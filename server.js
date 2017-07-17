@@ -29,3 +29,7 @@ function handleError(res, reason, message, code) {
 app.get("/test", function(req, res) {
   res.status(200).send("success");
 });
+
+app.post("/asd", function(req, res) {
+  res.status(200).send("haha");
+});
