@@ -55,7 +55,7 @@ app.post("/insert", function(req, res) {
 
 
 app.get("/info", function(req, res) {
-  db.query("SELECT * FROM info;", function(err, results) {
+  db.query("SELECT * FROM info ORDER BY id ASC;", function(err, results) {
           if (err) {
             console.log(err);
             return;
