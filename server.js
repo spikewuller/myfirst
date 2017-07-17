@@ -1,6 +1,7 @@
 var express = require("express");
 var path = require("path");
 var bodyParser = require("body-parser");
+var mysql = require('mysql');
 
 var app = express();
 app.use(bodyParser.json());
@@ -8,9 +9,20 @@ app.use(bodyParser.json());
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
 
-var server = app.listen(process.env.PORT || 8080, function () {
+
+var con = mysql.createConnection({
+  host: "databases.000webhost.com",
+  user: "id2091182_test2",
+  password: "123456",
+  database: "id2091182_test1"
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  var server = app.listen(process.env.PORT || 8080, function () {
     var port = server.address().port;
     console.log("App now running on port", port);
+  });
 });
 
 // CONTACTS API ROUTES BELOW
@@ -27,5 +39,8 @@ function handleError(res, reason, message, code) {
  */
 
 app.get("/test", function(req, res) {
-  res.status(200).json({"code":200,"message":"success"});
+  con.query("SELECT * FROM main", function (err, result, fields) {
+    if (err) throw err;
+    res.status(200).json(result);
+  });
 });
