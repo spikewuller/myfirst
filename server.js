@@ -1,24 +1,19 @@
 var express = require("express");
 var path = require("path");
 var bodyParser = require("body-parser");
-var mysql = require('mysql');
+var pg = require('pg');
 
 var app = express();
 app.use(bodyParser.json());
 
-// Create a database variable outside of the database connection callback to reuse the connection pool in your app.
-var db;
+pg.defaults.ssl = true;
+pg.connect("postgres://waqhgtugfchdlz:c9d5e8253f1538c02ace6eb09f81630e7265b6d4cccdd6fde63591e20fec0cf2@ec2-23-23-244-83.compute-1.amazonaws.com:5432/d7bbbr40atd4eg", function(err, client) {
+  if (err) {
+    console.log(err);
+    return;
+  }
+  console.log('Connected to postgres! Getting schemas...');
 
-
-var con = mysql.createConnection({
-  host: "databases.000webhost.com",
-  user: "id2091182_test2",
-  password: "123456",
-  database: "id2091182_test1"
-});
-
-con.connect(function(err) {
-  if (err) throw err;
   var server = app.listen(process.env.PORT || 8080, function () {
     var port = server.address().port;
     console.log("App now running on port", port);
