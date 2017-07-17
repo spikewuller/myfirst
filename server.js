@@ -63,3 +63,13 @@ app.get("/info", function(req, res) {
           res.status(200).send(results.rows);
         });
 });
+
+app.get("/infobyid", function(req, res) {
+  db.query("SELECT * FROM info WHERE id="+req.query.id+";", function(err, results) {
+          if (err) {
+            console.log(err);
+            return;
+          }
+          res.status(200).send(results.rows[0]);
+        });
+});
