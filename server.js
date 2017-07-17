@@ -60,6 +60,6 @@ app.get("/info", function(req, res) {
             console.log(err);
             return;
           }
-          res.status(200).send(results);
+          res.status(200).send(results.rows);
         });
 });
