@@ -4,6 +4,7 @@ var bodyParser = require("body-parser");
 var pg = require('pg');
 
 var app = express();
+var db;
 app.use(bodyParser.json());
 
 pg.defaults.ssl = true;
@@ -12,6 +13,7 @@ pg.connect("postgres://waqhgtugfchdlz:c9d5e8253f1538c02ace6eb09f81630e7265b6d4cc
     console.log(err);
     return;
   }
+  db=client;
   console.log('Connected to postgres! Getting schemas...');
 
   var server = app.listen(process.env.PORT || 8080, function () {
@@ -34,8 +36,9 @@ function handleError(res, reason, message, code) {
  */
 
 app.get("/test", function(req, res) {
-  con.query("SELECT * FROM main", function (err, result, fields) {
-    if (err) throw err;
-    res.status(200).json(result);
-  });
+  db
+    .query("CREATE TABLE info(id serial PRIMARY KEY,name VARCHAR (50) UNIQUE NOT NULL);")
+    .on('row', function(row) {
+      console.log(JSON.stringify(row));
+    });
 });
