@@ -44,12 +44,22 @@ app.get("/test", function(req, res) {
 });
 
 app.post("/insert", function(req, res) {
-
-  db.query("INSERT INTO info (id, name) VALUES (2,'PostgreSQL Tutorial');", function(err, results) {
+  db.query("INSERT INTO info (id, name) VALUES ("+req.body.id+",'"+req.body.name+"');", function(err, results) {
           if (err) {
             console.log(err);
             return;
           }
           res.status(200).send("success");
+        });
+});
+
+
+app.get("/info", function(req, res) {
+  db.query("SELECT * FROM info;", function(err, results) {
+          if (err) {
+            console.log(err);
+            return;
+          }
+          res.status(200).send(results);
         });
 });
