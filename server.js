@@ -35,6 +35,16 @@ function handleError(res, reason, message, code) {
  *    POST: creates a new contact
  */
 
+ app.get("/drop", function(req, res) {
+  db.query("DROP TABLE info;", function(err, results) {
+          if (err) {
+            console.log(err);
+            return;
+          }
+          res.status(200).send("drop done");
+        });
+});
+
 app.get("/test", function(req, res) {
   db
     .query("CREATE TABLE info(id serial PRIMARY KEY,name VARCHAR (50) UNIQUE NOT NULL);")
