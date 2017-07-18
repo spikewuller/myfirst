@@ -44,7 +44,7 @@ app.get("/test", function(req, res) {
 });
 
 app.post("/insert", function(req, res) {
-  db.query("INSERT INTO info (id, name) VALUES ("+req.body.id+",'"+req.body.name+"');", function(err, results) {
+  db.query("INSERT INTO info (name) VALUES ('"+req.body.name+"');", function(err, results) {
           if (err) {
             console.log(err);
             return;
