@@ -85,9 +85,12 @@ app.get("/infobyid", function(req, res) {
         });
 });
 
-app.post("/upfile", function(req, res) {
-  var form = new formidable.IncomingForm();
-    form.parse(req, function (err, fields, files) {
-      res.status(200).send('File uploaded '+files.filetoupload.path);
-    });
+app.get("/count", function(req, res) {
+  db.query("SELECT COUNT(*) FROM info;", function(err, results) {
+          if (err) {
+            console.log(err);
+            return;
+          }
+          res.status(200).send({"count":results.rows[0]});
+        });
 });
