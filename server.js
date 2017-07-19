@@ -2,6 +2,7 @@ var express = require("express");
 var path = require("path");
 var bodyParser = require("body-parser");
 var pg = require('pg');
+var formidable = require('formidable');
 
 var app = express();
 var db;
@@ -82,4 +83,11 @@ app.get("/infobyid", function(req, res) {
           }
           res.status(200).send(results.rows[0]);
         });
+});
+
+app.post("/upfile", function(req, res) {
+  var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+      res.status(200).send('File uploaded '+files.filetoupload.path);
+    });
 });
