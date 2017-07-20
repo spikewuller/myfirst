@@ -1,6 +1,7 @@
 var express = require("express");
 var path = require("path");
 var bodyParser = require("body-parser");
+var jwt = require('jwt-simple');
 var pg = require('pg');
 var formidable = require('formidable');
 
@@ -85,12 +86,10 @@ app.get("/infobyid", function(req, res) {
         });
 });
 
-app.get("/count", function(req, res) {
-  db.query("SELECT COUNT(*) FROM info;", function(err, results) {
-          if (err) {
-            console.log(err);
-            return;
-          }
-          res.status(200).send({"count":results.rows[0]});
-        });
+app.post("/auth", function(req, res) {
+  var token = jwt.encode({
+    mail: "abc@gmail.com",
+    exp: 1500566035740
+  }, "BMEKHEJ2362JHNE");
+  res.status(200).send({"token":token});
 });
