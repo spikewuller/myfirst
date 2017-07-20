@@ -89,7 +89,7 @@ app.get("/infobyid", function(req, res) {
 app.post("/auth", function(req, res) {
   var token = jwt.encode({
     mail: "abc@gmail.com",
-    exp: 1500566035740
+    exp: new Date().getTime()
   }, "BMEKHEJ2362JHNE");
   res.status(200).send({"token":token});
 });
