@@ -95,7 +95,7 @@ app.post("/auth", function(req, res) {
 });
 
 app.get("/auth/info", function(req, res) {
-  var token=req.headers.Authorization;
+  var token=req.get("Authorization");
   console.log(token);
   if (token && token.startsWith("Bearer ")) {
     var obj = jwt.decode(token.replace("Bearer ",""), "BMEKHEJ2362JHNE");
