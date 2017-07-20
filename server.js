@@ -93,3 +93,15 @@ app.post("/auth", function(req, res) {
   }, "BMEKHEJ2362JHNE");
   res.status(200).send({"token":token});
 });
+
+app.get("/auth/info", function(req, res) {
+  var token=req.headers.Authorization;
+  if (token && token.startsWith("Bearer ")) {
+    var obj = jwt.decode(token.replace("Bearer ",""), "BMEKHEJ2362JHNE");
+    res.status(200).send({"success":true,"data":obj});
+  }
+  else {
+    res.status(200).send({"success":false});
+  }
+  
+});
