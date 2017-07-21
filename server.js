@@ -98,7 +98,13 @@ app.get("/auth/info", function(req, res) {
   var token=req.get("Authorization");
   console.log(token);
   if (token && token.startsWith("Bearer ")) {
-    var obj = jwt.decode(token.replace("Bearer ",""), "BMEKHEJ2362JHNE");
+    try {
+      var obj = jwt.decode(token.replace("Bearer ",""), "BMEKHEJ2362JHNE");
+    }
+    catch (err) {
+      res.status(200).send({"success":false});
+      return;
+    }
     res.status(200).send({"success":true,"data":obj});
   }
   else {
