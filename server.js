@@ -14,5 +14,7 @@ var server = app.listen(process.env.PORT || 8080, function () {
 // index page 
 app.get('/', function(req, res) {
   console.log('index here');
-    res.render('index');
+    res.render('index', {
+      menus:["Tab 1","Tab 2"]
+    });
 });
