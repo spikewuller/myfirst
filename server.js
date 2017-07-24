@@ -13,8 +13,11 @@ var server = app.listen(process.env.PORT || 8080, function () {
 
 // index page 
 app.get('/', function(req, res) {
-  console.log('index here');
+  var result=[];
+  for (i=0;i<5;i++) {
+    result.push("Tab "+(i+1));
+  }
     res.render('index', {
-      menus:["Tab 1","Tab 2"]
+      menus:result
     });
 });
