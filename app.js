@@ -18,7 +18,7 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
-app.use(logger('default'));
+// app.use(logger('default'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride());
