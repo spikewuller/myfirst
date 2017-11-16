@@ -1,6 +1,7 @@
 var express = require("express");
 var path = require("path");
 var bodyParser = require("body-parser");
+var client = algoliasearch("KAGOUUA6K6", "976c775b30466d62136f2c8942416e8e");
 
 var app = express();
 app.use(bodyParser.json());
@@ -19,5 +20,16 @@ function handleError(res, reason, message, code) {
 }
 
 app.get("/test", function(req, res) {
-  res.status(200).send("success");
+  const index = client.initIndex("test1");
+  index.search("", {
+ "hitsPerPage": "10",
+ "page": "0",
+ "attributesToRetrieve": "*",
+ "facets": "[]",
+ "filters":"id:10 OR id:35"
+}).then(responses => {
+    // Response from Algolia:
+    // https://www.algolia.com/doc/api-reference/api-methods/search/#response-format
+    res.status(200).send(responses);
+  });
 });
