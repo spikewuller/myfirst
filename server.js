@@ -29,8 +29,15 @@ app.get("/test", function(req, res) {
  "facets": "[]",
  "filters":"id=10 OR id=35"
 }).then(responses => {
-    // Response from Algolia:
-    // https://www.algolia.com/doc/api-reference/api-methods/search/#response-format
-    res.status(200).send(responses);
+    var hits=responses.hits;
+    var result=[];
+    for (x in hits) {
+      result.push({
+        "id":x.id,
+        "name":x.name,
+        "follow":x.follow
+      });
+    }
+    res.status(200).send(result);
   });
 });
