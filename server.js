@@ -1,23 +1,23 @@
-var express = require('express');
+var express = require("express");
+var path = require("path");
+var bodyParser = require("body-parser");
+
 var app = express();
-
-// set the view engine to ejs
-app.set('view engine', 'ejs');
-
-// use res.render to load up an ejs view file
+app.use(bodyParser.json());
 
 var server = app.listen(process.env.PORT || 8080, function () {
     var port = server.address().port;
     console.log("App now running on port", port);
-  });
+});
 
-// index page 
-app.get('/', function(req, res) {
-  var result=[];
-  for (i=0;i<5;i++) {
-    result.push("Tab "+(i+1));
-  }
-    res.render('index', {
-      menus:result
-    });
+// CONTACTS API ROUTES BELOW
+
+// Generic error handler used by all endpoints.
+function handleError(res, reason, message, code) {
+  console.log("ERROR: " + reason);
+  res.status(code || 500).json({"error": message});
+}
+
+app.get("/test", function(req, res) {
+  res.status(200).send("success");
 });
