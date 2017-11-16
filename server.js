@@ -31,12 +31,12 @@ app.get("/test", function(req, res) {
 }).then(responses => {
     var hits=responses.hits;
     var result=[];
-    console.log(hits);
     for (var x in hits) {
+      var item=hits[x];
       result.push({
-        "id":x.id,
-        "name":x.name,
-        "follow":x.follow
+        "id":item.id,
+        "name":item.name,
+        "follow":item.follow
       });
     }
     res.status(200).send(result);
