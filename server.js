@@ -31,7 +31,7 @@ app.get("/test", function(req, res) {
 }).then(responses => {
     var hits=responses.hits;
     var result=[];
-    for (x in hits) {
+    for (var x in hits) {
       result.push({
         "id":x.id,
         "name":x.name,
