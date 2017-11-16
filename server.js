@@ -6,6 +6,11 @@ var client = algoliasearch("KAGOUUA6K6", "976c775b30466d62136f2c8942416e8e");
 
 var app = express();
 app.use(bodyParser.json());
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 var server = app.listen(process.env.PORT || 8080, function () {
     var port = server.address().port;
@@ -27,7 +32,7 @@ app.get("/test", function(req, res) {
  "page": "0",
  "attributesToRetrieve": "*",
  "facets": "[]",
- "filters":"id=10 OR id=35"
+ "filters":""
 }).then(responses => {
     var hits=responses.hits;
     var result=[];
