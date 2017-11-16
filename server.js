@@ -27,7 +27,7 @@ app.get("/test", function(req, res) {
  "page": "0",
  "attributesToRetrieve": "*",
  "facets": "[]",
- "filters":"id:10"
+ "filters":"id=10"
 }).then(responses => {
     // Response from Algolia:
     // https://www.algolia.com/doc/api-reference/api-methods/search/#response-format
