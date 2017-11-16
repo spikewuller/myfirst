@@ -1,4 +1,5 @@
 var express = require("express");
+var algoliasearch = require('algoliasearch');
 var path = require("path");
 var bodyParser = require("body-parser");
 var client = algoliasearch("KAGOUUA6K6", "976c775b30466d62136f2c8942416e8e");
