@@ -48,7 +48,7 @@ var req = http.request(options, function (res) {
   res.on("end", function () {
     var body = Buffer.concat(chunks);
     console.log(body.toString());
-    mainres.status(200).send(body.toString());
+    mainres.status(200).send(JSON.parse(body.toString()));
   });
 });
 
