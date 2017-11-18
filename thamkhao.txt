@@ -112,3 +112,59 @@ app.get("/auth/info", function(req, res) {
   }
   
 });
+
+
+
+
+
+app.get("/test", function(req, mainres) {
+
+// var options = {
+//   "method": "GET",
+//   "hostname": "slippore-staging.firebaseapp.com",
+//   "port": null,
+//   "path": "/api/v1/test",
+//   "headers": {
+    
+//   }
+// };
+
+// var req = http.request(options, function (res) {
+//   var chunks = [];
+
+//   res.on("data", function (chunk) {
+//     chunks.push(chunk);
+//   });
+
+//   res.on("end", function () {
+//     var body = Buffer.concat(chunks);
+//     console.log(body.toString());
+//     mainres.status(200).send(JSON.parse(body.toString()));
+//   });
+// });
+
+// req.end();
+// });
+
+// app.get("/test", function(req, res) {
+//   const index = client.initIndex("test1");
+//   index.search("", {
+//  "hitsPerPage": "10",
+//  "page": "0",
+//  "attributesToRetrieve": "*",
+//  "facets": "[]",
+//  "filters":""
+// }).then(responses => {
+//     var hits=responses.hits;
+//     var result=[];
+//     for (var x in hits) {
+//       var item=hits[x];
+//       result.push({
+//         "id":item.id,
+//         "name":item.name,
+//         "follow":item.follow
+//       });
+//     }
+//     res.status(200).send(result);
+//   });
+// });
