@@ -30,7 +30,7 @@ app.get("/test", function(req, mainres) {
 
 var options = {
   "method": "GET",
-  "hostname": "https://slippore-staging.firebaseapp.com",
+  "hostname": "slippore-staging.firebaseapp.com",
   "port": null,
   "path": "/api/v1/test",
   "headers": {
