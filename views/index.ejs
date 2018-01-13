@@ -51,7 +51,10 @@ window.fbAsyncInit = function() {
 
 <script type="text/javascript">
     function test() {
-
+FB.ui({
+  method: 'share',
+  href: 'https://spikewuller.herokuapp.com/',
+}, function(response){});
     }
 </script>
 </body>
