@@ -24,9 +24,9 @@ function handleError(res, reason, message, code) {
 }
 
 app.get("/webhook", function(req, res) {
-	console.log(req.query.hub.verify_token+" "+ req.query.hub.mode+" "+req.query.hub.challenge);
-  if (req.query.hub.verify_token=="321321321" && req.query.hub.mode=="subscribe") {
-  	res.send(req.query.hub.challenge);
+	console.log(req.query["hub.verify_token"]+" "+ req.query["hub.mode"]+" "+req.query["hub.challenge"]);
+  if (req.query["hub.verify_token"]=="321321321" && req.query["hub.mode"]=="subscribe") {
+  	res.send(req.query["hub.challenge"]);
   }
   else {
   	res.send("fail");
