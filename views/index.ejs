@@ -27,7 +27,7 @@
 </head>
 <body ng-app="SinglePage">
 <div id="fb-root"></div>
-<script>(
+<script>
 window.fbAsyncInit = function() {
     FB.init({
       appId            : '295434974194630',
@@ -37,7 +37,7 @@ window.fbAsyncInit = function() {
     });
   };
 
-    function (d, s, id) {
+    (function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s);
