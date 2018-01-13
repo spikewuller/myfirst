@@ -12,7 +12,7 @@ var server = app.listen(process.env.PORT || 8080, function () {
   });
 
 // index page 
-app.get('/', function(req, res) {
+app.get('/test', function(req, res) {
     res.render('index', {
       
     });
