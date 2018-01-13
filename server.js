@@ -1,23 +1,39 @@
-var express = require('express');
+var express = require("express");
+var algoliasearch = require('algoliasearch');
+var path = require("path");
+var bodyParser = require("body-parser");
+
 var app = express();
-
-// set the view engine to ejs
-app.set('view engine', 'ejs');
-
-// use res.render to load up an ejs view file
+app.use(bodyParser.json());
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 var server = app.listen(process.env.PORT || 8080, function () {
     var port = server.address().port;
     console.log("App now running on port", port);
-  });
+});
 
-// index page 
-app.get('/', function(req, res) {
-  var result=[];
-  for (i=0;i<5;i++) {
-    result.push("Tab "+(i+1));
+// CONTACTS API ROUTES BELOW
+
+// Generic error handler used by all endpoints.
+function handleError(res, reason, message, code) {
+  console.log("ERROR: " + reason);
+  res.status(code || 500).json({"error": message});
+}
+
+app.get("/webhook", function(req, res) {
+	console.log(req.query.hub.verify_token+" "+ req.query.hub.mode+" "+req.query.hub.challenge);
+  if (req.query.hub.verify_token=="321321321" && req.query.hub.mode=="subscribe") {
+  	res.send(req.query.hub.challenge);
   }
-    res.render('index', {
-      menus:result
-    });
+  else {
+  	res.send("fail");
+  }
+});
+
+app.post("/webhook", function(req, res) {
+
 });
