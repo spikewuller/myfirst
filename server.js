@@ -1,5 +1,4 @@
 var express = require("express");
-var algoliasearch = require('algoliasearch');
 var path = require("path");
 var bodyParser = require("body-parser");
 
