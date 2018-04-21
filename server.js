@@ -38,7 +38,9 @@ app.get("/test", function(req, res) {
 		}
 	};
 
+	var now=new Date().getTime();
 	docClient.get(params, function(err, data) {
+		console.log(new Date().getTime()-now);
 		if (err) {
 			console.log("Unable to read item. Error JSON:"+ JSON.stringify(err));
 			res.status(200).send({
