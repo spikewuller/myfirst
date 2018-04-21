@@ -8,7 +8,9 @@ var AWS = require("aws-sdk");
 
 AWS.config.update({
 	region: "us-west-1",
-	endpoint: "https://dynamodb.us-west-1.amazonaws.com"
+	endpoint: "https://dynamodb.us-west-1.amazonaws.com",
+	accessKeyId: "AKIAIDJDG54MTQG6GIHQ",
+	secretAccessKey: "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"
 });
 
 var docClient = new AWS.DynamoDB.DocumentClient();
@@ -39,8 +41,12 @@ app.get("/test", function(req, res) {
 	docClient.get(params, function(err, data) {
 		if (err) {
 			console.log("Unable to read item. Error JSON:"+ JSON.stringify(err));
+			res.status(200).send({
+				"error":true
+			});
 		} else {
 			console.log("GetItem succeeded:"+ JSON.stringify(data));
+			res.status(200).send(data);
 		}
 	});
 });
