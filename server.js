@@ -34,7 +34,7 @@ app.get("/test", function(req, res) {
 	var params = {
 		TableName: "test",
 		Key:{
-			"id": parseInt(req.params.id)
+			"id": parseInt(req.query.id)
 		}
 	};
 
