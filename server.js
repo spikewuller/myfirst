@@ -20,6 +20,13 @@ var server = app.listen(process.env.PORT || 8080, function () {
 
 // CONTACTS API ROUTES BELOW
 
+app.get("/test", function(req, res) {
+	res.status(200).send({
+		"ok":100
+	});
+});
+
+
 // Generic error handler used by all endpoints.
 function handleError(res, reason, message, code) {
   console.log("ERROR: " + reason);
