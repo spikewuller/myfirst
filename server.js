@@ -22,7 +22,7 @@ app.get('/webhook', function(req, res) { // Đây là path để validate tooken
 });
 
 app.post('/webhook', function(req, res) { // Phần sử lý tin nhắn của người dùng gửi đến
-  console.log(req.body);
+  console.log(JSON.stringify(req.body));
   // var entries = req.body.entry;
   // for (var entry of entries) {
   //   var messaging = entry.messaging;
